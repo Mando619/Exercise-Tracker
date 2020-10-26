@@ -1,9 +1,14 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/api/", function(req, res) {
+  app.get("/stats", function(request, response) {
     db.Workout.find({}).then(function(dbWorkout) {
-      res.json(dbWorkout);
+      response.json(dbWorkout);
+    })
+    .catch(function(error) {
+      response.json(error)
     });
   });
 }
+
+app.get("/exercise")
