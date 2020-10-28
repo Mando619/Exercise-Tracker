@@ -1,4 +1,4 @@
-var db = require("../models");
+var db = require("./models");
 
 module.exports = function(app) {
   app.get("/stats", function(request, response) {
@@ -10,5 +10,3 @@ module.exports = function(app) {
     });
   });
 }
-
-app.get("/exercise")
