@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
-const { Workout } = require("./models");
+//const { Workout } = require("./models");
 const PORT = process.env.PORT || 3000;
 const db = require("./models");
 
@@ -35,6 +35,7 @@ app.get("/api/workouts", function (request, response) {
   db.Workout.find({})
     .then(function (dbWorkout) {
       response.json(dbWorkout);
+      console.log(dbWorkout);
     })
     .catch(function (error) {
       response.json(error)
@@ -54,18 +55,20 @@ app.post("/api/workouts", function (request, response) {
   db.Workout.create(request.body)
     .then(function (dbData) {
       response.json(dbData);
+      console.log(dbData);
     })
     .catch(function (error) {
       response.json(error);
     });
 });
 
-app.put("/api/workouts/id:", function (response, response) {
+app.put("/api/workouts/id:", function (request, response) {
   const { id } = request.params;
   db.Workout.updateOne({ _id: id },
     { push: { exercises: request.body } })
     .then(function (dbWorkout) {
       response.json(dbWorkout);
+      console.log(dbWorkout);
     })
     .catch(function (error) {
       response.json(error);
