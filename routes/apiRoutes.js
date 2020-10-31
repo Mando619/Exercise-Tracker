@@ -31,7 +31,7 @@ module.exports = function (app) {
     app.put("/api/workouts/:id", function (request, response) {
         const { id } = request.params;
         db.Workout.updateOne({ _id: id },
-            { push: { exercises: request.body } })
+            { $push: { exercises: request.body }})
             .then(function (dbWorkout) {
                 response.json(dbWorkout);
             })
