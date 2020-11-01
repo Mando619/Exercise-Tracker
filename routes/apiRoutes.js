@@ -13,8 +13,12 @@ module.exports = function (app) {
     });
 
     app.get("/api/workouts/range", function (request, response) {
-        db.Workout.find(request.body).then(function (dbRange) {
+        db.Workout.find(request.body)
+        .then(function (dbRange) {
             response.json(dbRange); 
+        })
+        .catch(function (error) {
+            response.json(error);
         });
     });
 
